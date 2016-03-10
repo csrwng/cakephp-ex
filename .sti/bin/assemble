@@ -10,8 +10,32 @@ echo STI_SCRIPTS_PATH=${STI_SCRIPTS_PATH}
 # else 
 #   source ${STI_SCRIPTS_PATH}/assemble
 # fi
-source ./assemble-2
 
+
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. ./
+
+ls -alR ./
+
+if [ -f composer.json ]; then
+  echo "Found 'composer.json', installing dependencies using composer.phar... "
+
+  # Install Composer
+  php -r "readfile('https://getcomposer.org/installer');" | php
+
+  # Install App dependencies using Composer
+  ./composer.phar install --no-interaction --no-ansi --optimize-autoloader
+
+  if [ ! -f composer.lock ]; then
+    echo -e "\nConsider adding a 'composer.lock' file into your source repository.\n"
+  fi
+fi
+
+
+echo " ---> About to call chgrp and chmod"
+chgrp -R 0 $1
+chmod -R g+rw $1
+find $1 -type d -exec chmod g+x {} +
 echo "About to call chmod"
 
 [[ -d ./app/tmp ]] && chmod -R go+rw ./app/tmp
