@@ -2,12 +2,15 @@
 
 set -x
 echo STI_SCRIPTS_PATH=${STI_SCRIPTS_PATH}
-if [ -e /usr/local/sti/assemble ]; then
-  # old assemble location in previous php image versions
-  source /usr/local/sti/assemble
-else 
-  source ${STI_SCRIPTS_PATH}/assemble
-fi
+
+
+# if [ -e /usr/local/sti/assemble ]; then
+#   # old assemble location in previous php image versions
+#   source /usr/local/sti/assemble
+# else 
+#   source ${STI_SCRIPTS_PATH}/assemble
+# fi
+source ./assemble-2
 
 echo "About to call chmod"
 
