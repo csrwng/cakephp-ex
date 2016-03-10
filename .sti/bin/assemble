@@ -13,9 +13,10 @@ echo STI_SCRIPTS_PATH=${STI_SCRIPTS_PATH}
 
 
 echo "---> Installing application source..."
+ls -alR ./
+
 cp -Rf /tmp/src/. ./
 
-ls -alR ./
 
 if [ -f composer.json ]; then
   echo "Found 'composer.json', installing dependencies using composer.phar... "
