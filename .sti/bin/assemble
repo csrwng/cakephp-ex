@@ -14,6 +14,7 @@ echo STI_SCRIPTS_PATH=${STI_SCRIPTS_PATH}
 
 echo "---> Installing application source..."
 ls -alR ./
+pwd
 
 cp -Rf /tmp/src/. ./
 
